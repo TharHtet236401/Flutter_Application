@@ -667,7 +667,7 @@ class _PostScreenState extends State<PostScreen> {
                               }),
                               save(
                                   post.likesCount ?? 0,
-                                  post.selfSaved == true ? Icons.save_as: Icons.save_as_outlined,
+                                  post.selfSaved == true ? Icons.bookmark_added: Icons.bookmark_added_outlined,
                                   post.selfSaved == true ? Colors.red : Colors.black54, () {
                                 _handlePostSaveUnsave(post.id ?? 0);
                               }),

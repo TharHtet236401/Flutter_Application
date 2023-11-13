@@ -20,10 +20,10 @@ class WatchList extends StatelessWidget {
               child: TabBar(
                 tabs: [
                   Tab(
-                    text: 'My Courses',
+                    text: 'Saved Articles',
                   ),
                   Tab(
-                    text: 'Saved Articles',
+                    text: 'My Courses',
                   ),
                 ],
                 labelColor: Colors.white, // Text color of the selected tab
@@ -34,9 +34,10 @@ class WatchList extends StatelessWidget {
               child: TabBarView(
                 children: [
                   // Course tab content
-                  CourseListScreen(),
-                  // Article tab content (blank for now)
+
                   PostScreenSaved(),
+                  // Article tab content (blank for now)
+                  CourseListScreen(),
                 ],
               ),
             ),
