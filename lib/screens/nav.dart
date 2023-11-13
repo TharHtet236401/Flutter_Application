@@ -4,6 +4,7 @@ import 'package:flutter_app/screens/courses.dart';
 import 'package:flutter_app/screens/post_form.dart';
 import 'package:flutter_app/screens/post_screen.dart';
 import 'package:flutter_app/screens/savedPosts.dart';
+import 'package:flutter_app/screens/watchList.dart';
 
 import 'profile.dart';
 import 'search.dart';
@@ -23,7 +24,7 @@ class _NavState extends State<Nav> {
     PostScreen(),
     CourseListScreen(),
     SearchPage(),
-    PostScreenSaved(),
+    WatchList(),
     Profile(),
   ];
   String username = 'Richard';
