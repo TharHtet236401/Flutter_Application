@@ -24,7 +24,12 @@ class ExpandedPostPage extends StatelessWidget {
   final DateTime time;
   final String? posterImage;
 
-  ExpandedPostPage({required this.postBody,required this.postTitle, required this.postImage, required this.poster, required this.time, required this.posterImage});
+  ExpandedPostPage({required this.postBody,
+    required this.postTitle,
+    required this.postImage,
+    required this.poster,
+    required this.time,
+    required this.posterImage});
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +75,7 @@ class ExpandedPostPage extends StatelessWidget {
                                         image: posterImage != null
                                             ? DecorationImage(
                                             image: NetworkImage(
-                                                '${posterImage}'))
+                                                '$posterImage'))
                                             : null,
                                         borderRadius:
                                         BorderRadius.circular(25),
@@ -435,25 +440,21 @@ class _PostScreenState extends State<PostScreen> {
                                       decoration: BoxDecoration(
                                         image: post.user!.image != null
                                             ? DecorationImage(
-                                            image: NetworkImage(
-                                                '${post.user!.image}'))
-                                            : null,
-                                        borderRadius:
-                                        BorderRadius.circular(25),
-                                        border: Border.all(
-                                          color: tuDarkBlue, // Border color
-                                          width: 2, // Border width
+                                          image: NetworkImage('${post.user!.image}'),
+                                          fit: BoxFit.cover, // Adjust the fit based on your design requirements
+                                        )
+                                            : DecorationImage(
+                                          image: AssetImage('images/default.png'), // Provide the path to your default image
+                                          fit: BoxFit.cover,
                                         ),
-                                      ),
-                                      child: const CircleAvatar(
-                                        radius: 25, // Adjust the radius to increase the size
-                                        backgroundColor: Colors.grey, // Background color for the CircleAvatar
-                                        child: Icon(
-                                          Icons.person, // You can replace this with your profile picture
-                                          color: Colors.white, // Icon color
+                                        borderRadius: BorderRadius.circular(25),
+                                        border: Border.all(
+                                          color: tuDarkBlue,
+                                          width: 2,
                                         ),
                                       ),
                                     ),
+
                                     SizedBox(
                                       width: 10,
                                     ),
@@ -523,7 +524,12 @@ class _PostScreenState extends State<PostScreen> {
                                   ? InkWell(
                                 onTap: () {
                                   Navigator.of(context).push(HeroDialogRoute(builder: (context) {
-                                    return ExpandedPostPage(postBody: post.title, postTitle: post.body, postImage: post.image, poster: post.user!.name, time: localDateTime, posterImage: post.user!.image);
+                                    return ExpandedPostPage(postBody: post.title,
+                                        postTitle: post.body,
+                                        postImage: post.image,
+                                        poster: post.user!.name,
+                                        time: localDateTime,
+                                        posterImage: post.user!.image);
                                   }));
                                 },
                                 // onTap: () {

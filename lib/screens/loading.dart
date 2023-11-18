@@ -13,7 +13,7 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
   void _loadUserInfo() async {
-    String token = await getToken();
+    String token = await getToken(); ///taking token
     if (token == '') {
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => Login()), (route) => false);

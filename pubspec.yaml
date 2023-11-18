@@ -51,7 +51,7 @@ dependencies:
   readmore: ^2.1.0
   scroll_snap_list: ^0.9.1
   flutter_svg: ^0.21.0+1
-  image_picker: ^1.0.4
+  image_picker: ^0.7.5+4
   full_screen_image: ^2.0.0
 
 

@@ -105,8 +105,7 @@ Future<ApiResponse> updateUser(String name, String? image) async {
           'Accept': 'application/json',
           'Authorization': 'Bearer $token'
         },
-        body: image == null
-            ? {
+        body: image == null ? {
                 'name': name,
               }
             : {'name': name, 'image': image});

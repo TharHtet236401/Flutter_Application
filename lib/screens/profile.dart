@@ -12,6 +12,7 @@ import 'package:flutter_app/screens/payment_history.dart';
 import 'package:flutter_app/screens/quiz.dart';
 import 'package:flutter_app/screens/settings.dart';
 import 'package:flutter_app/screens/subscription.dart';
+import 'package:flutter_app/screens/testing.dart';
 import 'package:flutter_app/services/user_service.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -27,27 +28,29 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   User? user;
-  bool loading = true;
+
+  bool loading = false;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   File? _imageFile;
   final _picker = ImagePicker();
   TextEditingController txtNameController = TextEditingController();
 
   Future getImage() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    final pickedFile = await _picker.getImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         _imageFile = File(pickedFile.path);
       });
     }
   }
-
-  // get user detail
+  //
+  // // get user detail
   void getUser() async {
     ApiResponse response = await getUserDetail();
     if (response.error == null) {
       setState(() {
         user = response.data as User;
+
         loading = false;
         txtNameController.text = user!.name ?? '';
       });
@@ -136,7 +139,7 @@ class _ProfileState extends State<Profile> {
         const Column(
           children: [
             Text(
-              'username',
+              'asdfasdf',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -309,7 +312,7 @@ class _ProfileState extends State<Profile> {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => EditProfilePage()),
+            MaterialPageRoute(builder: (context) => testing()),
           );
         },
       ),
