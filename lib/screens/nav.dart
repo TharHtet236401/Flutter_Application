@@ -7,6 +7,8 @@ import 'package:flutter_app/screens/savedPosts.dart';
 import 'package:flutter_app/screens/testing.dart';
 import 'package:flutter_app/screens/watchList.dart';
 
+import '../services/user_service.dart';
+import 'login.dart';
 import 'profile.dart';
 import 'search.dart';
 import 'notifications.dart';
@@ -23,8 +25,8 @@ class _NavState extends State<Nav> {
   int _selectedIndex = 0;
   final List<Widget> _widgetOptions = <Widget>[
     PostScreen(),
-    CourseListScreen(),
-    SearchPage(),
+    // CourseListScreen(),
+    // SearchPage(),
     WatchList(),
     Profile(),
   ];
@@ -63,8 +65,8 @@ class _NavState extends State<Nav> {
         actions: [
           // Add a notification icon button here
           IconButton(
-            icon: Icon(Icons.notifications),
-            color: tuDarkBlue,
+            icon: Icon(Icons.notification_add),
+            color: Colors.redAccent,
             iconSize: 32,
             onPressed: () {
               // Navigate to the notifications.dart page when the button is pressed
@@ -90,6 +92,22 @@ class _NavState extends State<Nav> {
               );
             },
           ),
+          IconButton(
+            icon: Icon(Icons.exit_to_app),
+            color: tuDarkBlue,
+            iconSize: 32,
+            onPressed: (){
+              logout().then((value) => {
+                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>Login()), (route) => false)
+              });
+            },
+          )
+
+
+
+
+
+
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -106,23 +124,16 @@ class _NavState extends State<Nav> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.newspaper_rounded),
-            label: 'Courses',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
-          ),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.home_max_rounded),
-            label: 'Watched List',
+            label: 'To Review',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

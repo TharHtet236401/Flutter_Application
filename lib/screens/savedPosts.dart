@@ -373,326 +373,326 @@ class _PostScreenSavedState extends State<PostScreenSaved> {
 
 
   @override
+
   Widget build(BuildContext context) {
     return _loading
         ? Center(child: CircularProgressIndicator())
+        : _postList.isEmpty
+        ? Center(
+      child: Text(
+        'No saved posts available.',
+        style: TextStyle(fontSize: 18),
+      ),
+    )
         : RefreshIndicator(
       onRefresh: () {
         return retrievePosts();
       },
       child: ListView.builder(
-          itemCount: _postList.length,
-          itemBuilder: (BuildContext context, int index) {
-            Post post = _postList[index];
-            // Duration serverTimeDifference = Duration(hours: 6, minutes: 15); // Adjust this to your server's time difference
-            DateTime serverDateTime = DateTime.parse("${post.created_at}");
-            DateTime localDateTime = serverDateTime.toLocal();
+        itemCount: _postList.length,
+        itemBuilder: (BuildContext context, int index) {
+          // ... (your existing code for building posts)
+          Post post = _postList[index];
+          // Duration serverTimeDifference = Duration(hours: 6, minutes: 15); // Adjust this to your server's time difference
+          DateTime serverDateTime = DateTime.parse("${post.created_at}");
+          DateTime localDateTime = serverDateTime.toLocal();
 
-            return Container(
-              width: double.infinity,
-              child: Card(
-                  elevation: 0.6,
-                  color: Colors.white,
-                  margin: const EdgeInsets.fromLTRB(0, 7, 0, 1),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    side: BorderSide(
-                      color: tuDarkBlue.withOpacity(0.5), // Set the background color with opacity, // Set the border color here
-                      width: 1, // Set the border width here
-                    ),
+          return Container(
+            width: double.infinity,
+            child: Card(
+                elevation: 0.6,
+                color: Colors.white,
+                margin: const EdgeInsets.fromLTRB(0, 7, 0, 1),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  side: BorderSide(
+                    color: tuDarkBlue.withOpacity(0.5), // Set the background color with opacity, // Set the border color here
+                    width: 1, // Set the border width here
                   ),
-                  child: Stack(
-                    children: [
-                      // Positioned(
-                      //   bottom: 0,
-                      //   right: 0,
-                      //   child: Image.asset(
-                      //     'images/articlebg.png',
-                      //     width: 100,
-                      //     height: 100,
-                      //     fit: BoxFit.cover,
-                      //   ),
-                      // ),
+                ),
+                child: Stack(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding:
+                              EdgeInsets.symmetric(horizontal: 11),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
 
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding:
-                                EdgeInsets.symmetric(horizontal: 11),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-
-                                  children: [
-                                    Container(
-                                      width: 40,
-                                      height: 40,
-                                      decoration: BoxDecoration(
-                                        image: post.user!.image != null
-                                            ? DecorationImage(
-                                            image: NetworkImage(
-                                                '${post.user!.image}'))
-                                            : null,
-                                        borderRadius:
-                                        BorderRadius.circular(25),
-                                        border: Border.all(
-                                          color: tuDarkBlue, // Border color
-                                          width: 2, // Border width
-                                        ),
-                                      ),
-                                      child: const CircleAvatar(
-                                        radius: 25, // Adjust the radius to increase the size
-                                        backgroundColor: Colors.grey, // Background color for the CircleAvatar
-                                        child: Icon(
-                                          Icons.person, // You can replace this with your profile picture
-                                          color: Colors.white, // Icon color
-                                        ),
+                                children: [
+                                  Container(
+                                    width: 40,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      image: post.user!.image != null
+                                          ? DecorationImage(
+                                          image: NetworkImage(
+                                              '${post.user!.image}'))
+                                          : null,
+                                      borderRadius:
+                                      BorderRadius.circular(25),
+                                      border: Border.all(
+                                        color: tuDarkBlue, // Border color
+                                        width: 2, // Border width
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            '${post.user!.name}',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 18),
-                                          ),
-                                          Text(
-                                            DateFormat('HH:mm, dd/MM/yy').format(localDateTime),
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                        ]
-                                    )
-
-                                  ],
-                                ),
-                              ),
-                              post.user!.id == userId
-                                  ? PopupMenuButton(
-                                child: Padding(
-                                    padding:
-                                    EdgeInsets.only(right: 10),
-                                    child: Icon(
-                                      Icons.more_vert,
-                                      color: Colors.black,
-                                    )),
-                                itemBuilder: (context) => [
-                                  PopupMenuItem(
-                                      child: Text('Edit'),
-                                      value: 'edit'),
-                                  PopupMenuItem(
-                                      child: Text('Delete'),
-                                      value: 'delete')
-                                ],
-                                onSelected: (val) {
-                                  if (val == 'edit') {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                PostForm(
-                                                  title: 'Edit Post',
-                                                  post: post,
-                                                )));
-                                  } else {
-                                    _handleDeletePost(post.id ?? 0);
-                                  }
-                                },
-                              )
-                                  : SizedBox()
-                            ],
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              (post.title!.length > 200)
-                                  ? InkWell(
-                                onTap: () {
-                                  Navigator.of(context).push(HeroDialogRoute(builder: (context) {
-                                    return ExpandedPostPage(postBody: post.title, postTitle: post.body, postImage: post.image, poster: post.user!.name, time: localDateTime, posterImage: post.user!.image);
-                                  }));
-                                },
-                                // onTap: () {
-                                //   if (post.title!.length > 200) {
-                                //     Navigator.of(context).push(
-                                //       MaterialPageRoute(
-                                //         builder: (context) => ExpandedPostPage(postBody: post.title),
-                                //       ),
-                                //     );
-                                //   }
-                                // },
-                                // onTap: () {
-                                //   if (post.title!.length > 200) {
-                                //     showExpandedTextDialog(post.body, context);
-                                //   }
-                                // },
-                                // onTap: () {
-                                //   Navigator.of(context).push(
-                                //     MaterialPageRoute(
-                                //       builder: (context) => NotificationsPage(),
-                                //     ),
-                                //   );
-                                // },
-                                child: Hero(
-                                  tag: _heroAddTodo,
-                                  child: Container(
-                                    width: double.infinity,
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(11, 4, 11, 7),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text("${post.body}"),
-                                          ReadMoreText(
-                                            '${post.title}  ',
-                                            colorClickableText: Colors.blueGrey,
-                                            trimLength: 200,
-                                            trimMode: TrimMode.Length,
-                                            trimCollapsedText: 'Read more',
-                                            trimExpandedText: 'Read less',
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                            ),
-                                            moreStyle: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                            lessStyle: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ],
+                                    child: const CircleAvatar(
+                                      radius: 25, // Adjust the radius to increase the size
+                                      backgroundColor: Colors.grey, // Background color for the CircleAvatar
+                                      child: Icon(
+                                        Icons.person, // You can replace this with your profile picture
+                                        color: Colors.white, // Icon color
                                       ),
                                     ),
                                   ),
-                                ),
-                              )
-                                  : Container(
-                                width: double.infinity,
-                                child: Padding(
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          '${post.user!.name}',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 18),
+                                        ),
+                                        Text(
+                                          DateFormat('HH:mm, dd/MM/yy').format(localDateTime),
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ]
+                                  )
+
+                                ],
+                              ),
+                            ),
+                            post.user!.id == userId
+                                ? PopupMenuButton(
+                              child: Padding(
+                                  padding:
+                                  EdgeInsets.only(right: 10),
+                                  child: Icon(
+                                    Icons.more_vert,
+                                    color: Colors.black,
+                                  )),
+                              itemBuilder: (context) => [
+                                PopupMenuItem(
+                                    child: Text('Edit'),
+                                    value: 'edit'),
+                                PopupMenuItem(
+                                    child: Text('Delete'),
+                                    value: 'delete')
+                              ],
+                              onSelected: (val) {
+                                if (val == 'edit') {
+                                  Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              PostForm(
+                                                title: 'Edit Post',
+                                                post: post,
+                                              )));
+                                } else {
+                                  _handleDeletePost(post.id ?? 0);
+                                }
+                              },
+                            )
+                                : SizedBox()
+                          ],
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            (post.title!.length > 200)
+                                ? InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(HeroDialogRoute(builder: (context) {
+                                  return ExpandedPostPage(postBody: post.title, postTitle: post.body, postImage: post.image, poster: post.user!.name, time: localDateTime, posterImage: post.user!.image);
+                                }));
+                              },
+                              // onTap: () {
+                              //   if (post.title!.length > 200) {
+                              //     Navigator.of(context).push(
+                              //       MaterialPageRoute(
+                              //         builder: (context) => ExpandedPostPage(postBody: post.title),
+                              //       ),
+                              //     );
+                              //   }
+                              // },
+                              // onTap: () {
+                              //   if (post.title!.length > 200) {
+                              //     showExpandedTextDialog(post.body, context);
+                              //   }
+                              // },
+                              // onTap: () {
+                              //   Navigator.of(context).push(
+                              //     MaterialPageRoute(
+                              //       builder: (context) => NotificationsPage(),
+                              //     ),
+                              //   );
+                              // },
+                              child: Hero(
+                                tag: _heroAddTodo,
+                                child: Container(
+                                  width: double.infinity,
+                                  child: Padding(
                                     padding: const EdgeInsets.fromLTRB(11, 4, 11, 7),
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text("${post.body}"),
-                                        Text(
-                                          '${post.title}',
+                                        ReadMoreText(
+                                          '${post.title}  ',
+                                          colorClickableText: Colors.blueGrey,
+                                          trimLength: 200,
+                                          trimMode: TrimMode.Length,
+                                          trimCollapsedText: 'Read more',
+                                          trimExpandedText: 'Read less',
                                           style: TextStyle(
                                             fontSize: 16,
                                           ),
+                                          moreStyle: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          lessStyle: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ],
-                                    )
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ],
-                          ),
-
-                          // InkWell(
-                          //   onTap: () {
-                          //     Navigator.of(context).push(
-                          //       MaterialPageRoute(
-                          //         builder: (context) => NotificationsPage(),
-                          //       ),
-                          //     );
-                          //   },
-                          //   child: Container(
-                          //     width: double.infinity,
-                          //     child: Padding(
-                          //       padding:
-                          //           const EdgeInsets.fromLTRB(11, 4, 11, 7),
-                          //       child: ReadMoreText(
-                          //         '${post.body}  ',
-                          //         colorClickableText: Colors.blueGrey,
-                          //         trimLength: 200,
-                          //         trimMode: TrimMode.Length,
-                          //         trimCollapsedText: 'Read more',
-                          //         trimExpandedText: 'Read less',
-                          //         style: TextStyle(
-                          //             fontSize: 16,
-                          //         ),
-                          //         moreStyle: TextStyle(
-                          //             fontSize: 16,
-                          //             fontWeight: FontWeight.bold),
-                          //         lessStyle: TextStyle(
-                          //             fontSize: 16,
-                          //             fontWeight: FontWeight.bold),
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-                          post.image != null
-                              ? Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 400,
-                            margin: const EdgeInsets.only(top: 0),
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image:
-                                    NetworkImage('${post.image}'),
-                                    fit: BoxFit.cover)),
-                          )
-                              : SizedBox(
-                            height: post.image != null ? 0 : 10,
-                          ),
-                          ButtonBar(
-                            alignment: MainAxisAlignment.start,
-                            children: [
-                              kLikeAndComment(
-                                  post.likesCount ?? 0,
-                                  post.selfLiked == true
-                                      ? Icons.favorite
-                                      : Icons.favorite_outline,
-                                  post.selfLiked == true
-                                      ? Colors.red
-                                      : Colors.black54, () {
-                                _handlePostLikeDislike(post.id ?? 0);
-                              }),
-                              save(
-                                  post.likesCount ?? 0,
-                                  post.selfSaved == true ? Icons.save_as: Icons.save_as_outlined,
-                                  post.selfSaved == true ? Colors.red : Colors.black54, () {
-                                _handlePostSaveUnsave(post.id ?? 0);
-                              }),
-                              Container(
-                                height: 26,
-                                width: 0.7,
-                                color: Colors.black38,
+                            )
+                                : Container(
+                              width: double.infinity,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(11, 4, 11, 7),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text("${post.body}"),
+                                      Text(
+                                        '${post.title}',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ],
+                                  )
                               ),
-                              // kLikeAndComment(post.commentsCount ?? 0,
-                              //     Icons.bookmark, Colors.black54, () {
-                              //   Navigator.of(context).push(MaterialPageRoute(
-                              //       builder: (context) => CommentScreen(
-                              //             postId: post.id,
-                              //           )));
-                              // }),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  )),
-            );
-          }),
+                            ),
+                          ],
+                        ),
+
+                        // InkWell(
+                        //   onTap: () {
+                        //     Navigator.of(context).push(
+                        //       MaterialPageRoute(
+                        //         builder: (context) => NotificationsPage(),
+                        //       ),
+                        //     );
+                        //   },
+                        //   child: Container(
+                        //     width: double.infinity,
+                        //     child: Padding(
+                        //       padding:
+                        //           const EdgeInsets.fromLTRB(11, 4, 11, 7),
+                        //       child: ReadMoreText(
+                        //         '${post.body}  ',
+                        //         colorClickableText: Colors.blueGrey,
+                        //         trimLength: 200,
+                        //         trimMode: TrimMode.Length,
+                        //         trimCollapsedText: 'Read more',
+                        //         trimExpandedText: 'Read less',
+                        //         style: TextStyle(
+                        //             fontSize: 16,
+                        //         ),
+                        //         moreStyle: TextStyle(
+                        //             fontSize: 16,
+                        //             fontWeight: FontWeight.bold),
+                        //         lessStyle: TextStyle(
+                        //             fontSize: 16,
+                        //             fontWeight: FontWeight.bold),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+                        post.image != null
+                            ? Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 400,
+                          margin: const EdgeInsets.only(top: 0),
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image:
+                                  NetworkImage('${post.image}'),
+                                  fit: BoxFit.cover)),
+                        )
+                            : SizedBox(
+                          height: post.image != null ? 0 : 10,
+                        ),
+                        ButtonBar(
+                          alignment: MainAxisAlignment.start,
+                          children: [
+                            kLikeAndComment(
+                                post.likesCount ?? 0,
+                                post.selfLiked == true
+                                    ? Icons.favorite
+                                    : Icons.favorite_outline,
+                                post.selfLiked == true
+                                    ? Colors.red
+                                    : Colors.black54, () {
+                              _handlePostLikeDislike(post.id ?? 0);
+                            }),
+                            save(
+                                post.likesCount ?? 0,
+                                post.selfSaved == true ? Icons.save_as: Icons.save_as_outlined,
+                                post.selfSaved == true ? Colors.red : Colors.black54, () {
+                              _handlePostSaveUnsave(post.id ?? 0);
+                            }),
+                            Container(
+                              height: 26,
+                              width: 0.7,
+                              color: Colors.black38,
+                            ),
+                            // kLikeAndComment(post.commentsCount ?? 0,
+                            //     Icons.bookmark, Colors.black54, () {
+                            //   Navigator.of(context).push(MaterialPageRoute(
+                            //       builder: (context) => CommentScreen(
+                            //             postId: post.id,
+                            //           )));
+                            // }),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                )),
+          );
+        }),
     );
+
   }
+
 }
 
 
