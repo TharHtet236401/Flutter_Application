@@ -43,8 +43,8 @@ class _LoadingState extends State<Loading> {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height,
-      color: Colors.white,
-      child: Center(child: CircularProgressIndicator()),
+      color: const Color(0xFFD84356),
+      child: const Center(child: CircularProgressIndicator()),
     );
   }
 }

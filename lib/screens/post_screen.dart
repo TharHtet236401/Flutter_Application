@@ -8,7 +8,6 @@ import 'package:flutter_app/services/post_service.dart';
 import 'package:flutter_app/services/user_service.dart';
 import 'package:intl/intl.dart';
 import 'package:readmore/readmore.dart';
-
 import 'notifications.dart';
 import 'package:flutter_app/components/colors.dart';
 import 'login.dart';
@@ -49,7 +48,7 @@ class ExpandedPostPage extends StatelessWidget {
                 Stack(
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(7.5),
                         topRight: Radius.circular(7.5),
                       ),
@@ -63,7 +62,7 @@ class ExpandedPostPage extends StatelessWidget {
                             children: [
                               Padding(
                                 padding:
-                                EdgeInsets.symmetric(horizontal: 11),
+                                const EdgeInsets.symmetric(horizontal: 11),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
 
@@ -180,6 +179,8 @@ class ExpandedPostPage extends StatelessWidget {
 
 
 class PostScreen extends StatefulWidget {
+  const PostScreen({super.key});
+
   @override
   _PostScreenState createState() => _PostScreenState();
 }
@@ -228,7 +229,7 @@ class _PostScreenState extends State<PostScreen> {
     }
   }
 
-  // post like dislik
+  // post like dislike
   void _handlePostLikeDislike(int postId) async {
     ApiResponse response = await likeUnlikePost(postId);
 
@@ -263,60 +264,6 @@ class _PostScreenState extends State<PostScreen> {
     }
   }
 
-  // void showExpandedTextDialog(String? postBody, BuildContext context) {
-  //   showDialog(
-  //     context: context,
-  //     builder: (context) {
-  //       return BackdropFilter(
-  //         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5), // Adjust the blur intensity
-  //         child: Dialog(
-  //           shape: RoundedRectangleBorder(
-  //             borderRadius: BorderRadius.circular(8),
-  //           ),
-  //           child: CustomScrollView(
-  //             slivers: [
-  //               SliverAppBar(
-  //                 automaticallyImplyLeading: false, // Remove the back button
-  //                 expandedHeight: 100.0, // Adjust the height as needed
-  //                 pinned: true,
-  //                 flexibleSpace: Row(
-  //                   mainAxisAlignment: MainAxisAlignment.center,
-  //                   children: [
-  //                     Text('Expanded Post', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-  //                     IconButton(
-  //                       icon: Icon(Icons.close),
-  //                       onPressed: () {
-  //                         Navigator.of(context).pop();
-  //                       },
-  //                     ),
-  //                   ],
-  //                 ),
-  //               ),
-  //               SliverList(
-  //                 delegate: SliverChildListDelegate(
-  //                   [
-  //                     Container(
-  //                       width: 800, // Set the width to your desired value
-  //                       padding: EdgeInsets.all(16),
-  //                       child: Text(
-  //                         postBody!,
-  //                         style: TextStyle(fontSize: 18),
-  //                       ),
-  //                     ),
-  //                   ],
-  //                 ),
-  //               ),
-  //             ],
-  //           ),
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
-
-
-
-
 
   void showExpandedTextDialog(String? postBody, BuildContext context) {
     showDialog(
@@ -333,7 +280,7 @@ class _PostScreenState extends State<PostScreen> {
               height: 1000, // Set the width to 600 pixels
               child: Stack(
                 children: <Widget>[
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   SingleChildScrollView(
                     child: Container(
                       width: 300, // Set the width as needed
@@ -365,11 +312,6 @@ class _PostScreenState extends State<PostScreen> {
 
 
 
-
-
-
-
-
   @override
   void initState() {
     retrievePosts();
@@ -380,7 +322,7 @@ class _PostScreenState extends State<PostScreen> {
   @override
   Widget build(BuildContext context) {
     return _loading
-        ? Center(child: CircularProgressIndicator())
+        ? const Center(child: CircularProgressIndicator())
         : RefreshIndicator(
       onRefresh: () {
         return retrievePosts();
@@ -400,7 +342,7 @@ class _PostScreenState extends State<PostScreen> {
                   color: Colors.white,
                   margin: const EdgeInsets.fromLTRB(0, 7, 0, 1),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(6),
                     side: BorderSide(
                       color: tuDarkBlue.withOpacity(0.5), // Set the background color with opacity, // Set the border color here
                       width: 1, // Set the border width here
@@ -408,16 +350,6 @@ class _PostScreenState extends State<PostScreen> {
                   ),
                   child: Stack(
                     children: [
-                      // Positioned(
-                      //   bottom: 0,
-                      //   right: 0,
-                      //   child: Image.asset(
-                      //     'images/articlebg.png',
-                      //     width: 100,
-                      //     height: 100,
-                      //     fit: BoxFit.cover,
-                      //   ),
-                      // ),
 
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -429,7 +361,7 @@ class _PostScreenState extends State<PostScreen> {
                             children: [
                               Padding(
                                 padding:
-                                EdgeInsets.symmetric(horizontal: 11),
+                                const EdgeInsets.symmetric(horizontal: 11),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
 
@@ -443,14 +375,14 @@ class _PostScreenState extends State<PostScreen> {
                                           image: NetworkImage('${post.user!.image}'),
                                           fit: BoxFit.cover, // Adjust the fit based on your design requirements
                                         )
-                                            : DecorationImage(
+                                            : const DecorationImage(
                                           image: AssetImage('images/default.png'), // Provide the path to your default image
                                           fit: BoxFit.cover,
                                         ),
                                         borderRadius: BorderRadius.circular(25),
                                         border: Border.all(
                                           color: tuDarkBlue,
-                                          width: 2,
+                                          width: 1,
                                         ),
                                       ),
                                     ),
@@ -482,7 +414,7 @@ class _PostScreenState extends State<PostScreen> {
                               ),
                               post.user!.id == userId
                                   ? PopupMenuButton(
-                                child: Padding(
+                                child: const Padding(
                                     padding:
                                     EdgeInsets.only(right: 10),
                                     child: Icon(
@@ -490,12 +422,12 @@ class _PostScreenState extends State<PostScreen> {
                                       color: Colors.black,
                                     )),
                                 itemBuilder: (context) => [
-                                  PopupMenuItem(
-                                      child: Text('Edit'),
-                                      value: 'edit'),
-                                  PopupMenuItem(
-                                      child: Text('Delete'),
-                                      value: 'delete')
+                                  const PopupMenuItem(
+                                      value: 'edit',
+                                      child: Text('Edit')),
+                                  const PopupMenuItem(
+                                      value: 'delete',
+                                      child: Text('Delete'))
                                 ],
                                 onSelected: (val) {
                                   if (val == 'edit') {
@@ -511,10 +443,10 @@ class _PostScreenState extends State<PostScreen> {
                                   }
                                 },
                               )
-                                  : SizedBox()
+                                  : const SizedBox()
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 8,
                           ),
                           Column(
@@ -532,27 +464,6 @@ class _PostScreenState extends State<PostScreen> {
                                         posterImage: post.user!.image);
                                   }));
                                 },
-                                // onTap: () {
-                                //   if (post.title!.length > 200) {
-                                //     Navigator.of(context).push(
-                                //       MaterialPageRoute(
-                                //         builder: (context) => ExpandedPostPage(postBody: post.title),
-                                //       ),
-                                //     );
-                                //   }
-                                // },
-                                // onTap: () {
-                                //   if (post.title!.length > 200) {
-                                //     showExpandedTextDialog(post.body, context);
-                                //   }
-                                // },
-                                // onTap: () {
-                                //   Navigator.of(context).push(
-                                //     MaterialPageRoute(
-                                //       builder: (context) => NotificationsPage(),
-                                //     ),
-                                //   );
-                                // },
                                 child: Hero(
                                   tag: _heroAddTodo,
                                   child: Container(
@@ -571,14 +482,14 @@ class _PostScreenState extends State<PostScreen> {
                                             trimMode: TrimMode.Length,
                                             trimCollapsedText: 'Read more',
                                             trimExpandedText: 'Read less',
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 16,
                                             ),
-                                            moreStyle: TextStyle(
+                                            moreStyle: const TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,
                                             ),
-                                            lessStyle: TextStyle(
+                                            lessStyle: const TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -600,7 +511,7 @@ class _PostScreenState extends State<PostScreen> {
                                       Text("${post.body}"),
                                       Text(
                                         '${post.title}',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 16,
                                         ),
                                       ),
@@ -610,40 +521,6 @@ class _PostScreenState extends State<PostScreen> {
                               ),
                             ],
                           ),
-
-                          // InkWell(
-                          //   onTap: () {
-                          //     Navigator.of(context).push(
-                          //       MaterialPageRoute(
-                          //         builder: (context) => NotificationsPage(),
-                          //       ),
-                          //     );
-                          //   },
-                          //   child: Container(
-                          //     width: double.infinity,
-                          //     child: Padding(
-                          //       padding:
-                          //           const EdgeInsets.fromLTRB(11, 4, 11, 7),
-                          //       child: ReadMoreText(
-                          //         '${post.body}  ',
-                          //         colorClickableText: Colors.blueGrey,
-                          //         trimLength: 200,
-                          //         trimMode: TrimMode.Length,
-                          //         trimCollapsedText: 'Read more',
-                          //         trimExpandedText: 'Read less',
-                          //         style: TextStyle(
-                          //             fontSize: 16,
-                          //         ),
-                          //         moreStyle: TextStyle(
-                          //             fontSize: 16,
-                          //             fontWeight: FontWeight.bold),
-                          //         lessStyle: TextStyle(
-                          //             fontSize: 16,
-                          //             fontWeight: FontWeight.bold),
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
                           post.image != null
                               ? Container(
                             width: MediaQuery.of(context).size.width,
@@ -662,18 +539,18 @@ class _PostScreenState extends State<PostScreen> {
                             alignment: MainAxisAlignment.start,
                             children: [
                               kLikeAndComment(
-                                  post.likesCount ?? 0,
+
                                   post.selfLiked == true
-                                      ? Icons.favorite
-                                      : Icons.favorite_outline,
+                                      ? Icons.check
+                                      : Icons.check_outlined,
                                   post.selfLiked == true
-                                      ? Colors.red
+                                      ? Colors.green
                                       : Colors.black54, () {
                                 _handlePostLikeDislike(post.id ?? 0);
                               }),
                               save(
                                   post.likesCount ?? 0,
-                                  post.selfSaved == true ? Icons.bookmark_added: Icons.bookmark_added_outlined,
+                                  post.selfSaved == true ? Icons.save: Icons.save_outlined,
                                   post.selfSaved == true ? Colors.red : Colors.black54, () {
                                 _handlePostSaveUnsave(post.id ?? 0);
                               }),
@@ -682,13 +559,6 @@ class _PostScreenState extends State<PostScreen> {
                                 width: 0.7,
                                 color: Colors.black38,
                               ),
-                              // kLikeAndComment(post.commentsCount ?? 0,
-                              //     Icons.bookmark, Colors.black54, () {
-                              //   Navigator.of(context).push(MaterialPageRoute(
-                              //       builder: (context) => CommentScreen(
-                              //             postId: post.id,
-                              //           )));
-                              // }),
                             ],
                           ),
                         ],

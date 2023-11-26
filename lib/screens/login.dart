@@ -52,31 +52,31 @@ class _LoginState extends State<Login> {
 
           children: [
             Image.asset(
-              'images/logo.png',
+              'images/receipt.png',
               height: 100,
             ), // Update with your logo path
 
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             // Your brand name or app name
-            Align(
+            const Align(
               alignment: Alignment.center,
               child: Text(
-                'Thin U',
+                'Digital Ray',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Color(0xFFD84356),
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 controller: txtEmail,
                 validator: (val) =>
                     val!.isEmpty ? 'Invalid email address' : null,
                 decoration: kInputDecoration('Email')),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             TextFormField(
@@ -85,11 +85,11 @@ class _LoginState extends State<Login> {
                 validator: (val) =>
                     val!.length < 6 ? 'Required at least 6 chars' : null,
                 decoration: kInputDecoration('Password')),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             loading
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(),
                   )
                 : kTextButton('Login', () {
@@ -100,7 +100,7 @@ class _LoginState extends State<Login> {
                       });
                     }
                   }),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             kLoginRegisterHint('Dont have an account? ', 'Register', () {

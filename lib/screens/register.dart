@@ -55,29 +55,29 @@ class _RegisterState extends State<Register> {
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 100),
           children: [
             Image.asset(
-              'images/logo.png',
+              'images/receipt.png',
               height: 100,
             ), // Update with your logo path
 
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             // Your brand name or app name
-            Align(
+            const Align(
               alignment: Alignment.center,
               child: Text(
-                'Thin U',
+                'Digital Ray',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Color(0xFFD84356),
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextFormField(
                 controller: nameController,
                 validator: (val) => val!.isEmpty ? 'Invalid name' : null,
                 decoration: kInputDecoration('Name')),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             TextFormField(
@@ -86,7 +86,7 @@ class _RegisterState extends State<Register> {
                 validator: (val) =>
                     val!.isEmpty ? 'Invalid email address' : null,
                 decoration: kInputDecoration('Email')),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             TextFormField(
@@ -95,7 +95,7 @@ class _RegisterState extends State<Register> {
                 validator: (val) =>
                     val!.length < 6 ? 'Required at least 6 chars' : null,
                 decoration: kInputDecoration('Password')),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             TextFormField(
@@ -105,11 +105,11 @@ class _RegisterState extends State<Register> {
                     ? 'Confirm password does not match'
                     : null,
                 decoration: kInputDecoration('Confirm password')),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             loading
-                ? Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator())
                 : kTextButton(
                     'Register',
                     () {
@@ -121,7 +121,7 @@ class _RegisterState extends State<Register> {
                       }
                     },
                   ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             kLoginRegisterHint('Already have an account? ', 'Login', () {

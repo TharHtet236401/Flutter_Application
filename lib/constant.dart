@@ -1,7 +1,7 @@
 // ----- STRINGS ------
 import 'package:flutter/material.dart';
 
-const baseURL = 'http://192.168.100.7:8000/api';
+const baseURL = 'http://192.168.33.6:8000/api';
 const loginURL = baseURL + '/login';
 const registerURL = baseURL + '/register';
 const logoutURL = baseURL + '/logout';
@@ -34,9 +34,9 @@ TextButton kTextButton(String label, Function onPressed) {
     ),
     style: ButtonStyle(
         backgroundColor:
-            MaterialStateColor.resolveWith((states) => Colors.blue),
+            MaterialStateColor.resolveWith((states) => Color(0xFFD84356)),
         padding: MaterialStateProperty.resolveWith(
-            (states) => EdgeInsets.symmetric(vertical: 10))),
+            (states) => EdgeInsets.symmetric(vertical: 15))),
     onPressed: () => onPressed(),
   );
 }
@@ -57,7 +57,7 @@ Row kLoginRegisterHint(String text, String label, Function onTap) {
 // likes and comment btn
 
 Expanded kLikeAndComment(
-    int value, IconData icon, Color color, Function onTap) {
+     IconData icon, Color color, Function onTap) {
   return Expanded(
     child: Material(
       color: Colors.white,
@@ -74,12 +74,7 @@ Expanded kLikeAndComment(
                 color: color,
               ),
               SizedBox(width: 4),
-              Text(
-                '$value',
-                style: const TextStyle(
-                  fontSize: 18, // Increase the number size here
-                ),
-              )
+
             ],
           ),
         ),

@@ -95,7 +95,8 @@ class _PostFormState extends State<PostForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${widget.title}'),
+        backgroundColor: const Color(0xFFD84356),
+        title: Text('Add New Receipt'),
       ),
       body: _loading
           ? Center(
@@ -129,12 +130,12 @@ class _PostFormState extends State<PostForm> {
                   child: Column(
                     children: [
                       Padding(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         child: TextFormField(
                           controller: _txtControllerTitle,
                           validator: (val) => val!.isEmpty ? 'Title is required' : null,
-                          decoration: InputDecoration(
-                            hintText: "Post title...",
+                          decoration: const InputDecoration(
+                            hintText: "Amount",
                             border: OutlineInputBorder(
                               borderSide: BorderSide(width: 1, color: Colors.black38),
                             ),
@@ -142,14 +143,14 @@ class _PostFormState extends State<PostForm> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         child: TextFormField(
                           controller: _txtControllerBody,
                           keyboardType: TextInputType.multiline,
                           maxLines: 9,
                           validator: (val) => val!.isEmpty ? 'Post body is required' : null,
-                          decoration: InputDecoration(
-                            hintText: "Post body...",
+                          decoration: const InputDecoration(
+                            hintText: "Description",
                             border: OutlineInputBorder(
                               borderSide: BorderSide(width: 1, color: Colors.black38),
                             ),
@@ -161,7 +162,7 @@ class _PostFormState extends State<PostForm> {
                 ),
 
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: kTextButton('Post', () {
                     if (_formKey.currentState!.validate()) {
                       setState(() {

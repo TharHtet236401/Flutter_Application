@@ -8,6 +8,7 @@ class NotificationsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Notifications'),
+        backgroundColor: const Color(0xFFD84356),
       ),
       body: const Center(
         child: Column(
@@ -16,7 +17,7 @@ class NotificationsPage extends StatelessWidget {
             Icon(
               Icons.notifications,
               size: 100.0,
-              color: Colors.blue,
+              color: Color(0xFFD84356)
             ),
             SizedBox(height: 16.0),
             Text(
