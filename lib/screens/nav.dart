@@ -17,7 +17,7 @@ class Nav extends StatefulWidget {
 class _NavState extends State<Nav> {
   int _selectedIndex = 0;
   final List<Widget> _widgetOptions = <Widget>[
-    PostScreen(),
+    const PostScreen(),
     WatchList(),
 
   ];
@@ -51,7 +51,7 @@ class _NavState extends State<Nav> {
         actions: [
           // Add a notification icon button here
           IconButton(
-            icon: Icon(Icons.notification_add),
+            icon: const Icon(Icons.notification_add),
             color: const Color(0xFFD84356),
             iconSize: 32,
             onPressed: () {
@@ -59,14 +59,14 @@ class _NavState extends State<Nav> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => NotificationsPage(),
+                  builder: (context) => const NotificationsPage(),
                 ),
               );
             },
           ),
 
           IconButton(
-            icon: Icon(Icons.exit_to_app),
+            icon: const Icon(Icons.exit_to_app),
             color: const Color(0xFFD84356),
             iconSize: 32,
             onPressed: (){
@@ -91,19 +91,14 @@ class _NavState extends State<Nav> {
                     title: 'Add new post',
                   )));
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-
-
-
         elevation: 30,
-
-
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -118,7 +113,7 @@ class _NavState extends State<Nav> {
 
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Color(0xFFD84356),
+        selectedItemColor: const Color(0xFFD84356),
         unselectedItemColor: Colors.grey,
         onTap: _onItemTapped,
       ),

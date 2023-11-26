@@ -96,16 +96,16 @@ class _PostFormState extends State<PostForm> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFD84356),
-        title: Text('Add New Receipt'),
+        title: const Text('Add New Receipt'),
       ),
       body: _loading
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : ListView(
               children: [
                 widget.post != null
-                    ? SizedBox()
+                    ? const SizedBox()
                     : Container(
                         width: MediaQuery.of(context).size.width,
                         height: 200,
@@ -117,7 +117,7 @@ class _PostFormState extends State<PostForm> {
                                     fit: BoxFit.cover)),
                         child: Center(
                           child: IconButton(
-                            icon: Icon(Icons.image,
+                            icon: const Icon(Icons.image,
                                 size: 50, color: Colors.black38),
                             onPressed: () {
                               getImage();

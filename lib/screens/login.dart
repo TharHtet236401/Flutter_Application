@@ -61,7 +61,7 @@ class _LoginState extends State<Login> {
             const Align(
               alignment: Alignment.center,
               child: Text(
-                'Digital Ray',
+                'Galaxy Ray',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,

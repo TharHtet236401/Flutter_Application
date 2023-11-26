@@ -1,14 +1,14 @@
 // ----- STRINGS ------
 import 'package:flutter/material.dart';
 
-const baseURL = 'http://192.168.33.6:8000/api';
+const baseURL = 'http://192.168.100.7:8000/api';
 const loginURL = baseURL + '/login';
 const registerURL = baseURL + '/register';
 const logoutURL = baseURL + '/logout';
 const userURL = baseURL + '/user';
 const postsURL = baseURL + '/posts';
 const savedPostsURL = baseURL+'/savedposts';
-const commentsURL = baseURL + '/comments';
+
 
 // ----- Errors -----
 const serverError = 'hello world';
@@ -19,8 +19,8 @@ const somethingWentWrong = 'Something went wrong, try again!';
 InputDecoration kInputDecoration(String label) {
   return InputDecoration(
       labelText: label,
-      contentPadding: EdgeInsets.all(10),
-      border: OutlineInputBorder(
+      contentPadding: const EdgeInsets.all(10),
+      border: const OutlineInputBorder(
           borderSide: BorderSide(width: 1, color: Colors.black)));
 }
 
@@ -30,13 +30,13 @@ TextButton kTextButton(String label, Function onPressed) {
   return TextButton(
     child: Text(
       label,
-      style: TextStyle(color: Colors.white),
+      style: const TextStyle(color: Colors.white),
     ),
     style: ButtonStyle(
         backgroundColor:
-            MaterialStateColor.resolveWith((states) => Color(0xFFD84356)),
+            MaterialStateColor.resolveWith((states) => const Color(0xFFD84356)),
         padding: MaterialStateProperty.resolveWith(
-            (states) => EdgeInsets.symmetric(vertical: 15))),
+            (states) => const EdgeInsets.symmetric(vertical: 15))),
     onPressed: () => onPressed(),
   );
 }
@@ -48,7 +48,7 @@ Row kLoginRegisterHint(String text, String label, Function onTap) {
     children: [
       Text(text),
       GestureDetector(
-          child: Text(label, style: TextStyle(color: Colors.blue)),
+          child: Text(label, style: const TextStyle(color: Colors.blue)),
           onTap: () => onTap())
     ],
   );
@@ -64,7 +64,7 @@ Expanded kLikeAndComment(
       child: InkWell(
         onTap: () => onTap(),
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 3, horizontal: 2),
+          padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 2),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -73,7 +73,7 @@ Expanded kLikeAndComment(
                 size: 25,
                 color: color,
               ),
-              SizedBox(width: 4),
+              const SizedBox(width: 4),
 
             ],
           ),
@@ -91,7 +91,7 @@ save(
       child: InkWell(
         onTap: () => onTap(),
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 3, horizontal: 2),
+          padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 2),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -100,7 +100,7 @@ save(
                 size: 25,
                 color: color,
               ),
-              SizedBox(width: 4),
+              const SizedBox(width: 4),
 
             ],
           ),

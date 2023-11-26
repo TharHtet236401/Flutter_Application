@@ -8,7 +8,6 @@ import 'package:flutter_app/services/post_service.dart';
 import 'package:flutter_app/services/user_service.dart';
 import 'package:intl/intl.dart';
 import 'package:readmore/readmore.dart';
-import 'notifications.dart';
 import 'package:flutter_app/components/colors.dart';
 import 'login.dart';
 import 'post_form.dart';
@@ -23,7 +22,7 @@ class ExpandedPostPage extends StatelessWidget {
   final DateTime time;
   final String? posterImage;
 
-  ExpandedPostPage({required this.postBody,
+  ExpandedPostPage({super.key, required this.postBody,
     required this.postTitle,
     required this.postImage,
     required this.poster,
@@ -55,7 +54,7 @@ class ExpandedPostPage extends StatelessWidget {
                       child: Container(
                         height: 66,
                         color: tuDarkBlue,
-                        padding: EdgeInsets.symmetric(horizontal: 4, vertical:7),
+                        padding: const EdgeInsets.symmetric(horizontal: 4, vertical:7),
                         child: SingleChildScrollView(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -92,7 +91,7 @@ class ExpandedPostPage extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     Column(
@@ -101,14 +100,14 @@ class ExpandedPostPage extends StatelessWidget {
                                         children: [
                                           Text(
                                             '${poster}',
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               color: Colors.white,
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 18),
                                           ),
                                           Text(
                                             DateFormat('HH:mm, dd/MM/yy').format(time),
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               color: Colors.white,
                                               fontSize: 14,
                                             ),
@@ -129,7 +128,7 @@ class ExpandedPostPage extends StatelessWidget {
                       right: 0,
                       child: IconButton(
                         color: Colors.white,
-                        icon: Icon(Icons.close),
+                        icon: const Icon(Icons.close),
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
@@ -156,12 +155,12 @@ class ExpandedPostPage extends StatelessWidget {
                             : SizedBox(
                           height: postImage != null ? 0 : 10,
                         ),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
+                          padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                           child: Text(
                             postBody!,
-                            style: TextStyle(fontSize: 18),
+                            style: const TextStyle(fontSize: 18),
                           ),
                         ),
                       ],
@@ -284,10 +283,10 @@ class _PostScreenState extends State<PostScreen> {
                   SingleChildScrollView(
                     child: Container(
                       width: 300, // Set the width as needed
-                      padding: EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(16),
                       child: Text(
                         postBody!,
-                        style: TextStyle(fontSize: 18),
+                        style: const TextStyle(fontSize: 18),
                       ),
                     ),
                   ),
@@ -295,7 +294,7 @@ class _PostScreenState extends State<PostScreen> {
                     top: 10, // Adjust the top position as needed
                     right: 10, // Adjust the right position as needed
                     child: IconButton(
-                      icon: Icon(Icons.close), // Use the "close" icon or any other icon you prefer
+                      icon: const Icon(Icons.close), // Use the "close" icon or any other icon you prefer
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
@@ -387,7 +386,7 @@ class _PostScreenState extends State<PostScreen> {
                                       ),
                                     ),
 
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     Column(
@@ -396,13 +395,13 @@ class _PostScreenState extends State<PostScreen> {
                                         children: [
                                           Text(
                                             '${post.user!.name}',
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 18),
                                           ),
                                           Text(
                                             DateFormat('HH:mm, dd/MM/yy').format(localDateTime),
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 14,
                                             ),
                                           ),

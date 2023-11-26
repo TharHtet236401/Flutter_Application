@@ -379,22 +379,17 @@ class _PostScreenSavedState extends State<PostScreenSaved> {
                                     decoration: BoxDecoration(
                                       image: post.user!.image != null
                                           ? DecorationImage(
-                                          image: NetworkImage(
-                                              '${post.user!.image}'))
-                                          : null,
-                                      borderRadius:
-                                      BorderRadius.circular(25),
-                                      border: Border.all(
-                                        color: tuDarkBlue, // Border color
-                                        width: 2, // Border width
+                                        image: NetworkImage('${post.user!.image}'),
+                                        fit: BoxFit.cover, // Adjust the fit based on your design requirements
+                                      )
+                                          : const DecorationImage(
+                                        image: AssetImage('images/default.png'), // Provide the path to your default image
+                                        fit: BoxFit.cover,
                                       ),
-                                    ),
-                                    child: const CircleAvatar(
-                                      radius: 25, // Adjust the radius to increase the size
-                                      backgroundColor: Colors.grey, // Background color for the CircleAvatar
-                                      child: Icon(
-                                        Icons.person, // You can replace this with your profile picture
-                                        color: Colors.white, // Icon color
+                                      borderRadius: BorderRadius.circular(25),
+                                      border: Border.all(
+                                        color: tuDarkBlue,
+                                        width: 1,
                                       ),
                                     ),
                                   ),

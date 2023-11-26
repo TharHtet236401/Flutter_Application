@@ -6,7 +6,6 @@ class Post {
   String? title;
   String? image;
   int? likesCount;
-  int? commentsCount;
   User? user;
   bool? selfLiked;
   bool? selfSaved;
@@ -18,7 +17,6 @@ class Post {
     this.title,
     this.image,
     this.likesCount,
-    this.commentsCount,
     this.user,
     this.selfLiked,
     this.selfSaved,
@@ -34,7 +32,6 @@ class Post {
         title: json['title'],
         image: json['image'],
         likesCount: json['likes_count'],
-        commentsCount: json['comments_count'],
         created_at: json['created_at'],
         selfLiked: json['likes'].length > 0,
         selfSaved: json['saves'].length>0,
