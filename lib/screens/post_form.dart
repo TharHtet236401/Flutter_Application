@@ -99,7 +99,7 @@ class _PostFormState extends State<PostForm> {
         title: const Text('Add New Receipt'),
       ),
       body: _loading
-          ? const Center(
+          ?   const Center(
               child: CircularProgressIndicator(),
             )
           : ListView(
