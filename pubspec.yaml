@@ -53,6 +53,7 @@ dependencies:
   flutter_svg: ^0.21.0+1
   image_picker: ^0.7.5+4
   full_screen_image: ^2.0.0
+  mockito: ^5.4.3
 
 
 

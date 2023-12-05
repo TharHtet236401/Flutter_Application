@@ -22,7 +22,8 @@ class ExpandedPostPage extends StatelessWidget {
   final DateTime time;
   final String? posterImage;
 
-  ExpandedPostPage({super.key, required this.postBody,
+  ExpandedPostPage({super.key,
+    required this.postBody,
     required this.postTitle,
     required this.postImage,
     required this.poster,
@@ -264,50 +265,50 @@ class _PostScreenState extends State<PostScreen> {
   }
 
 
-  void showExpandedTextDialog(String? postBody, BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5), // Adjust the blur intensity
-          child: Dialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Container(
-              width: 800,
-              height: 1000, // Set the width to 600 pixels
-              child: Stack(
-                children: <Widget>[
-                  const SizedBox(height: 20),
-                  SingleChildScrollView(
-                    child: Container(
-                      width: 300, // Set the width as needed
-                      padding: const EdgeInsets.all(16),
-                      child: Text(
-                        postBody!,
-                        style: const TextStyle(fontSize: 18),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 10, // Adjust the top position as needed
-                    right: 10, // Adjust the right position as needed
-                    child: IconButton(
-                      icon: const Icon(Icons.close), // Use the "close" icon or any other icon you prefer
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
+  // void showExpandedTextDialog(String? postBody, BuildContext context) {
+  //   showDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return BackdropFilter(
+  //         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5), // Adjust the blur intensity
+  //         child: Dialog(
+  //           shape: RoundedRectangleBorder(
+  //             borderRadius: BorderRadius.circular(8),
+  //           ),
+  //           child: Container(
+  //             width: 800,
+  //             height: 1000, // Set the width to 600 pixels
+  //             child: Stack(
+  //               children: <Widget>[
+  //                 const SizedBox(height: 20),
+  //                 SingleChildScrollView(
+  //                   child: Container(
+  //                     width: 300, // Set the width as needed
+  //                     padding: const EdgeInsets.all(16),
+  //                     child: Text(
+  //                       postBody!,
+  //                       style: const TextStyle(fontSize: 18),
+  //                     ),
+  //                   ),
+  //                 ),
+  //                 Positioned(
+  //                   top: 10, // Adjust the top position as needed
+  //                   right: 10, // Adjust the right position as needed
+  //                   child: IconButton(
+  //                     icon: const Icon(Icons.close), // Use the "close" icon or any other icon you prefer
+  //                     onPressed: () {
+  //                       Navigator.of(context).pop();
+  //                     },
+  //                   ),
+  //                 ),
+  //               ],
+  //             ),
+  //           ),
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
 
 
@@ -434,8 +435,9 @@ class _PostScreenState extends State<PostScreen> {
                                         MaterialPageRoute(
                                             builder: (context) =>
                                                 PostForm(
-                                                  title: 'Edit Post',
                                                   post: post,
+                                                  title: 'Edit Post',
+
                                                 )));
                                   } else {
                                     _handleDeletePost(post.id ?? 0);

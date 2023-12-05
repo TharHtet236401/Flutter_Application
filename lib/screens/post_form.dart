@@ -96,7 +96,7 @@ class _PostFormState extends State<PostForm> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFD84356),
-        title: const Text('Add New Receipt'),
+        title: const Text('Add New Voucher'),
       ),
       body: _loading
           ?   const Center(
@@ -132,19 +132,6 @@ class _PostFormState extends State<PostForm> {
                       Padding(
                         padding: const EdgeInsets.all(8),
                         child: TextFormField(
-                          controller: _txtControllerTitle,
-                          validator: (val) => val!.isEmpty ? 'Title is required' : null,
-                          decoration: const InputDecoration(
-                            hintText: "Amount",
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(width: 1, color: Colors.black38),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: TextFormField(
                           controller: _txtControllerBody,
                           keyboardType: TextInputType.multiline,
                           maxLines: 9,
@@ -157,6 +144,20 @@ class _PostFormState extends State<PostForm> {
                           ),
                         ),
                       ),
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: TextFormField(
+                          controller: _txtControllerTitle,
+                          validator: (val) => val!.isEmpty ? 'Title is required' : null,
+                          decoration: const InputDecoration(
+                            hintText: "Amount",
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(width: 1, color: Colors.black38),
+                            ),
+                          ),
+                        ),
+                      ),
+
                     ],
                   ),
                 ),

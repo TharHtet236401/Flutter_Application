@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 // login
-Future<ApiResponse> login(String email, String password) async {
+Future<ApiResponse> login(String email, String password,) async {
   ApiResponse apiResponse = ApiResponse();
   try {
     final response = await http.post(Uri.parse(loginURL),
